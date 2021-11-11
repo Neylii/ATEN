@@ -1,4 +1,4 @@
-package se.aten.aten;
+package se.aten;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
