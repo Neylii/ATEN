@@ -9,7 +9,7 @@ public class FirstController {
 
     @RequestMapping("/home.html")
     public ModelAndView firstPage() {
-        return new ModelAndView("/WEB-INF/jsp/welcome.jsp");
+        return new ModelAndView("home");
     }
 
 }
