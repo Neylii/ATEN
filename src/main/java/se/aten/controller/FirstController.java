@@ -7,6 +7,8 @@ import org.springframework.web.servlet.ModelAndView;
 import se.aten.domain.Article;
 import se.aten.repository.ArticleRepository;
 
+import java.util.List;
+
 @Controller
 public class FirstController {
 
@@ -20,8 +22,9 @@ public class FirstController {
         Article secondArticle = new Article("appelem", 50.00);
         artRepo.save(firstArticle);
         artRepo.save(secondArticle);
+        List<Article> allArticles = artRepo.findAll();
 
-        return new ModelAndView("home");
+        return new ModelAndView("home", "articles", allArticles);
     }
 
 }

@@ -14,7 +14,8 @@ public class Article {
     private double price;
 
 
-    public Article(){}
+    public Article() {
+    }
 
     public Article(String name, double price) {
         this.name = name;
@@ -22,11 +23,11 @@ public class Article {
     }
 
     public int getId() {
-        return id;
+        return this.id;
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
@@ -34,10 +35,15 @@ public class Article {
     }
 
     public double getPrice() {
-        return price;
+        return this.price;
     }
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "Article: " + name  + ". Price: " + price;
     }
 }
