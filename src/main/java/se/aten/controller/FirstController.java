@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import se.aten.domain.Article;
+import se.aten.domain.Product;
 import se.aten.repository.ArticleRepository;
 
 import java.util.List;
@@ -18,11 +18,11 @@ public class FirstController {
     @RequestMapping("/home.html")
     public ModelAndView firstPage() {
 
-        Article firstArticle = new Article("apelem", 50.00);
-        Article secondArticle = new Article("appelem", 50.00);
+        Product firstArticle = new Product("apelem", 50.00);
+        Product secondArticle = new Product("appelem", 50.00);
         artRepo.save(firstArticle);
         artRepo.save(secondArticle);
-        List<Article> allArticles = artRepo.findAll();
+        List<Product> allArticles = artRepo.findAll();
 
         return new ModelAndView("home", "articles", allArticles);
     }
