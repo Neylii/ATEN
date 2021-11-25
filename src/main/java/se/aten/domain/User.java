@@ -15,7 +15,8 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @Column(unique = true)
-    private String customerNumber;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int customerNumber;
     private String username;
     private String password;
     private String firstName;
@@ -24,14 +25,15 @@ public class User {
 
     public User() {}
 
-    public User(String customerNumber, String username, String password, String firstName, String lastName) {
-        this.customerNumber = customerNumber;
+    public User(String username, String password, String firstName, String lastName) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.createdAt = new Timestamp(System.currentTimeMillis());
     }
+
+    public int getCustomerNumber() {return customerNumber;}
 
     public int getId() {
         return id;
