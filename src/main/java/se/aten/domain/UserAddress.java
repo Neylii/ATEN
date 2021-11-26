@@ -12,10 +12,11 @@ import javax.persistence.*;
 public class UserAddress {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "customerNumber")
-    private User customerNumber;
+    private int addressId;
+    @ManyToOne(cascade = CascadeType.PERSIST,
+            fetch = FetchType.EAGER)
+    @JoinColumn(name = "userId")
+    private User user;
     private String address;
     private String city;
     private String country;
@@ -32,12 +33,16 @@ public class UserAddress {
         this.phoneNumber = phoneNumber;
     }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public String getAddress() {
         return this.address;
     }
 
-    public void setAddress(String adress) {
-        this.address = adress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getCity() {
@@ -66,11 +71,12 @@ public class UserAddress {
 
     @Override
     public String toString() {
-        return "UserAddress: " +
-                "userId: " + customerNumber +
-                ", address: " + address +
-                ", city: " + city +
-                ", country: " + country +
-                ", phoneNumber: " + phoneNumber;
+        return "UserAddress{" +
+                "user=" + user +
+                ", address='" + address + '\'' +
+                ", city='" + city + '\'' +
+                ", country='" + country + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                '}';
     }
 }
