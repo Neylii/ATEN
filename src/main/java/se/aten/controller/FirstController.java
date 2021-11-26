@@ -4,10 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import se.aten.domain.Product;
-import se.aten.domain.ProductCategory;
-import se.aten.domain.ProductInventory;
-import se.aten.repository.ArticleRepository;
+import se.aten.domain.*;
+import se.aten.repository.ConsoleRepository;
+import se.aten.repository.GameRepository;
 
 import java.util.List;
 
@@ -15,20 +14,19 @@ import java.util.List;
 public class FirstController {
 
     @Autowired
-    ArticleRepository artRepo;
+    GameRepository GameRepo;
+    @Autowired
+    ConsoleRepository ConRepo;
 
     @RequestMapping("/home.html")
     public ModelAndView firstPage() {
 
-        ProductCategory game = new ProductCategory("Game", "Different kind of games");
-        ProductInventory bosse = new ProductInventory(100);
-        ProductInventory nisse = new ProductInventory(50);
 
-        Product firstArticle = new Product("apelem", "lol", "APLOL", 50.00, game, bosse);
-        Product secondArticle = new Product("appelem", "asda", "APASDA", 50.00, game, nisse);
-        artRepo.save(firstArticle);
-        artRepo.save(secondArticle);
-        List<Product> allArticles = artRepo.findAll();
+        Game game1 = new Game("Apelems Revenge", Genre.ACTION, 11);
+        game1.setPrice(199.00);
+        game1.setDescription("An adventure game like no other..");
+        GameRepo.save(game1);
+        List<Game> allArticles = GameRepo.findAll();
 
         return new ModelAndView("home", "articles", allArticles);
     }
