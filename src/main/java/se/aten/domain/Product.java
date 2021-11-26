@@ -8,8 +8,8 @@ import java.sql.Timestamp;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Product implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private int productId;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long productId;
     private String name;
     private String description;
     private double price;
@@ -63,8 +63,16 @@ public class Product implements Serializable {
         this.discountId = discountId;
     }
 
+    public long getProductId() {
+        return productId;
+    }
+
+    public Timestamp getCreatedAt() {
+        return createdAt;
+    }
+
     @Override
     public String toString() {
-        return "Product: " + name  + ". Price: " + price;
+        return "Product: " + name + ". Price: " + price;
     }
 }

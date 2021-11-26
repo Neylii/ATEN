@@ -10,26 +10,17 @@ import java.io.Serializable;
 
 @Entity
 public class Game extends Product implements Serializable {
-
-    private String title;
     @Enumerated(EnumType.STRING)
     private Genre genre;
     private int ageLimit;
 
-    public Game(){}
-
-    public Game( String title, Genre genre, int ageLimit) {
-        super();
-
-        this.title = title;
-        this.genre = genre;
-        this.ageLimit = ageLimit;
+    public Game() {
     }
 
-
-
-    public String getTitle() {
-        return title;
+    public Game(Genre genre, int ageLimit) {
+        super();
+        this.genre = genre;
+        this.ageLimit = ageLimit;
     }
 
     public Genre getGenre() {
@@ -43,7 +34,6 @@ public class Game extends Product implements Serializable {
     @Override
     public String toString() {
         return "Game :" +
-                "title:'" + title + '\'' +
                 ", genre:" + genre +
                 ", ageLimit" + ageLimit;
     }

@@ -22,7 +22,7 @@ public class FirstController {
     public ModelAndView firstPage() {
 
 
-        Game game1 = new Game("Apelems Revenge", Genre.ACTION, 11);
+        Game game1 = new Game(Genre.ACTION, 11);
         game1.setPrice(199.00);
         game1.setDescription("An adventure game like no other..");
         GameRepo.save(game1);
