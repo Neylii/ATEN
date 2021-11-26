@@ -2,6 +2,8 @@ package se.aten.domain;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This class represents a User that can login to the application.
@@ -21,15 +23,25 @@ public class User {
     private String firstName;
     private String lastName;
     private Timestamp createdAt = new Timestamp(System.currentTimeMillis());
+    @OneToMany(
+            mappedBy = "addressId",
+            orphanRemoval = true,
+            cascade = CascadeType.ALL)
+    private List<UserAddress> userAddresses = new ArrayList<>();
 
     public User() {
     }
 
-    public User(String username, String password, String firstName, String lastName) {
+    public User(String username, String password, String firstName, String lastName, UserAddress userAddress) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.userAddresses.add(userAddress);
+    }
+
+    public void addAddress(UserAddress userAddress) {
+        this.userAddresses.add(userAddress);
     }
 
     public int getUserId() {
