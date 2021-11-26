@@ -14,8 +14,8 @@ public class UserAddress {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "customerNumber")
-    private User customerNumber;
+    @JoinColumn(name = "userId")
+    private User userId;
     private String address;
     private String city;
     private String country;
@@ -66,11 +66,12 @@ public class UserAddress {
 
     @Override
     public String toString() {
-        return "UserAddress: " +
-                "userId: " + customerNumber +
-                ", address: " + address +
-                ", city: " + city +
-                ", country: " + country +
-                ", phoneNumber: " + phoneNumber;
+        return "UserAddress{" +
+                "userId=" + userId +
+                ", address='" + address + '\'' +
+                ", city='" + city + '\'' +
+                ", country='" + country + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                '}';
     }
 }

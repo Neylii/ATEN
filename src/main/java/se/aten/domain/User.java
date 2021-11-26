@@ -7,36 +7,33 @@ import java.sql.Timestamp;
  * This class represents a User that can login to the application.
  *
  * @author Niklas Johansson
+ * @author Emma Fredriksson
  */
 @Entity
 @Table(name = "tbl_User")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
     @Column(unique = true)
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int customerNumber;
+    private int userId;
     private String username;
     private String password;
     private String firstName;
     private String lastName;
-    private Timestamp createdAt;
+    private Timestamp createdAt = new Timestamp(System.currentTimeMillis());
 
-    public User() {}
+    public User() {
+    }
 
     public User(String username, String password, String firstName, String lastName) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.createdAt = new Timestamp(System.currentTimeMillis());
     }
 
-    public int getCustomerNumber() {return customerNumber;}
-
-    public int getId() {
-        return id;
+    public int getUserId() {
+        return userId;
     }
 
     public String getUsername() {
@@ -73,5 +70,16 @@ public class User {
 
     public Timestamp getCreatedAt() {
         return createdAt;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
     }
 }
