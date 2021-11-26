@@ -1,28 +1,17 @@
 package se.aten.domain;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import se.aten.repository.ArticleRepository;
-
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-@Entity
-@Table(name="tbl_Product")
-public class Product {
+@MappedSuperclass
+@Inheritance(strategy = InheritanceType.JOINED)
+public class Product implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="id")
-    private int id;
+    private long productId;
     private String name;
     private String description;
-    @Column(unique = true, nullable = false)
-    private String SKU;
-    @ManyToOne(cascade = CascadeType.PERSIST, optional = false)
-    @JoinColumn(name = "categoryId")
-    private ProductCategory categoryId;
-    @OneToOne(cascade = CascadeType.PERSIST, optional = false)
-    @JoinColumn(name = "inventoryId")
-    private ProductInventory inventoryId;
     private double price;
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "discountId")
@@ -32,19 +21,58 @@ public class Product {
     public Product() {
     }
 
-    public Product(String name, String desc, String SKU, double price, ProductCategory productCategory, ProductInventory productInventory) {
+    public Product(String name, String desc, double price) {
         this.name = name;
         this.description = desc;
-        this.SKU = SKU;
         this.price = price;
         this.createdAt = new Timestamp(System.currentTimeMillis());
-        this.categoryId = productCategory;
-        this.inventoryId = productInventory;
         // System.out.println(this.createdAt.getTime());        // För att få 16165771233114
+    }
+
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public Discount getDiscountId() {
+        return discountId;
+    }
+
+    public void setDiscountId(Discount discountId) {
+        this.discountId = discountId;
+    }
+
+    public long getProductId() {
+        return productId;
+    }
+
+    public Timestamp getCreatedAt() {
+        return createdAt;
     }
 
     @Override
     public String toString() {
-        return "Product: " + name  + ". Price: " + price;
+        return "Product: " + name + ". Price: " + price;
     }
 }
