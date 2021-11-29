@@ -21,11 +21,6 @@ public class FirstController {
     @RequestMapping("/home.html")
     public ModelAndView firstPage() {
 
-
-        Game game1 = new Game(Genre.ACTION, 11);
-        game1.setPrice(199.00);
-        game1.setDescription("An adventure game like no other..");
-        GameRepo.save(game1);
         List<Game> allArticles = GameRepo.findAll();
 
         return new ModelAndView("home", "articles", allArticles);

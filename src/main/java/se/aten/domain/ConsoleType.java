@@ -6,5 +6,5 @@ package se.aten.domain;
  */
 
 public enum ConsoleType {
-    PC, PS5, PS4, XBOX_ONE, XBOX_X
+    PC, PS5, PS4, XBOX_ONE, XBOX_X, NINTENDO, GAMECUBE, HAMPSOLE, SEGA, SONY,
 }

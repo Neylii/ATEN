@@ -17,8 +17,8 @@ public class Game extends Product implements Serializable {
     public Game() {
     }
 
-    public Game(Genre genre, int ageLimit) {
-        super();
+    public Game(String name, String desc, double price, Genre genre, int ageLimit) {
+        super(name, desc, price);
         this.genre = genre;
         this.ageLimit = ageLimit;
     }
