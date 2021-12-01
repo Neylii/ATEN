@@ -30,7 +30,7 @@ public class UserController {
     @RequestMapping(value = "/newUser.html", method = RequestMethod.POST)
     public String newUser(User user) {
         // Hardcoded address for now, needs to change
-        UserAddress userAddress = new UserAddress("Götagatan 1", "Göteborg", "Sweden", "031-111");
+        UserAddress userAddress = new UserAddress("Götagatan 1", "7772", "Göteborg", "Sweden", "031-111");
 
         // Sets the right user to the userAddress to make the foreign key work
         userAddress.setUser(user);
