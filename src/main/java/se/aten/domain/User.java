@@ -12,12 +12,12 @@ import java.util.List;
  * @author Emma Fredriksson
  */
 @Entity
-@Table(name = "tbl_User")
+@Table(name="tbl_User")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(unique = true)
-    private int userId;
+    private long userId;
     private String username;
     private String password;
     private String firstName;
@@ -44,8 +44,12 @@ public class User {
         this.userAddresses.add(userAddress);
     }
 
-    public int getUserId() {
+    public long getUserId() {
         return userId;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
     }
 
     public String getUsername() {
@@ -84,14 +88,26 @@ public class User {
         return createdAt;
     }
 
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public List<UserAddress> getUserAddresses() {
+        return userAddresses;
+    }
+
+    public void setUserAddresses(List<UserAddress> userAddresses) {
+        this.userAddresses = userAddresses;
+    }
+
     @Override
     public String toString() {
         return "User{" +
-                "userId=" + userId +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
+                "username='" + username + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
+                ", createdAt=" + createdAt +
+                ", userAddresses=" + userAddresses +
                 '}';
     }
 }
