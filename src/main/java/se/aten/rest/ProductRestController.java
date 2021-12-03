@@ -17,6 +17,7 @@ import java.util.Optional;
 /**
  * Rest API for products
  */
+@CrossOrigin(origins = "http://localhost:8081")
 @RestController
 @RequestMapping("/api")
 public class ProductRestController {
