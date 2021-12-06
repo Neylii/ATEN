@@ -3,14 +3,12 @@ package se.aten.rest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import se.aten.domain.User;
 import se.aten.domain.UserAddress;
 import se.aten.repository.UserAddressRepository;
 import se.aten.repository.UserRepository;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -101,6 +99,22 @@ public class UserRestController {
             return new ResponseEntity(allAddressesByCity, HttpStatus.OK);
         } else {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @RequestMapping(value = "/user/new", method = RequestMethod.POST)
+    public ResponseEntity createUser(@RequestBody User user) {
+        if (user.getUsername() == null || user.getPassword() == null) {
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        } else {
+            UserAddress address = new UserAddress(user.getUserAddresses().get(0).getAddress(),
+                    user.getUserAddresses().get(0).getZipcode(), user.getUserAddresses().get(0).getCity(),
+                    user.getUserAddresses().get(0).getCountry(), user.getUserAddresses().get(0).getPhoneNumber());
+            User newUser = new User(user.getUsername(), user.getPassword(), user.getFirstName(),
+                    user.getLastName(), address);
+            address.setUser(newUser);
+            userRepo.save(newUser);
+            return new ResponseEntity(HttpStatus.CREATED);
         }
     }
 }
