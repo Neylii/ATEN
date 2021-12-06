@@ -28,6 +28,8 @@ public class User {
             orphanRemoval = true,
             cascade = CascadeType.ALL)
     private List<UserAddress> userAddresses = new ArrayList<>();
+    @OneToMany
+    private List<Receipt>userReceipts = new ArrayList<>();
 
     public User() {
     }
@@ -98,6 +100,14 @@ public class User {
 
     public void setUserAddresses(List<UserAddress> userAddresses) {
         this.userAddresses = userAddresses;
+    }
+
+    public List<Receipt> getUserReceipts() {
+        return userReceipts;
+    }
+
+    public void setUserReceipts(List<Receipt> userReceipts) {
+        this.userReceipts = userReceipts;
     }
 
     @Override
