@@ -51,15 +51,15 @@ VALUES ('NINTENDO', '3', 10),
 ('HAMPSOLE', '1', 13)
 ;
 
-INSERT INTO tbl_user(user_id, username, password, first_name, last_name)
-VALUES (1, 'TheBoss', 'mitthemligalösen', 'Bosse', 'Bus'),
-(2, 'MrNisse', '1234', 'Nisse', 'Hult'),
-(3, 'LenaLena', 'minkattebest', 'Lena', 'Strand')
+INSERT INTO tbl_user(username, password, first_name, last_name)
+VALUES ('TheBoss', 'mitthemligalösen', 'Bosse', 'Bus'),
+('MrNisse', '1234', 'Nisse', 'Hult'),
+('LenaLena', 'minkattebest', 'Lena', 'Strand')
 ;
 
-INSERT INTO tbl_user_address(address_id, address, city, country, phone_number, user_id)
-VALUES (4, 'Götagatan 7', 'Göteborg', 'Sweden', '031-11112', 1),
-(6, 'Storgatan 3', 'Göteborg', 'Sweden', '0701112233', 2),
-(7, 'Nyavägen 15', 'Mölndal', 'Sweden', '073442211', 3),
-(8, 'Sommarstugen', 'Kalmar', 'Sweden', '073442211', 3)
+INSERT INTO tbl_user_address(address, city, country, phone_number, user_id)
+VALUES ('Götagatan 7', 'Göteborg', 'Sweden', '031-11112', 1),
+('Storgatan 3', 'Göteborg', 'Sweden', '0701112233', 2),
+('Nyavägen 15', 'Mölndal', 'Sweden', '073442211', 3),
+('Sommarstugen', 'Kalmar', 'Sweden', '073442211', 3)
 ;

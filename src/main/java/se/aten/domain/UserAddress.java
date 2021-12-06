@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Table(name="tbl_UserAddress")
 public class UserAddress {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long addressId;
     @ManyToOne(cascade = CascadeType.PERSIST,
             fetch = FetchType.EAGER)
