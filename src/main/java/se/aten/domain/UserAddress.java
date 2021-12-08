@@ -1,6 +1,7 @@
 package se.aten.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Entity class for user address.
@@ -9,9 +10,9 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="tbl_UserAddress")
-public class UserAddress {
+public class UserAddress implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long addressId;
     @ManyToOne(cascade = CascadeType.PERSIST,
             fetch = FetchType.EAGER)
@@ -94,7 +95,8 @@ public class UserAddress {
     @Override
     public String toString() {
         return "UserAddress{" +
-                "user=" + user +
+                "addressId=" + addressId +
+                ", user=" + user +
                 ", address='" + address + '\'' +
                 ", zipcode='" + zipcode + '\'' +
                 ", city='" + city + '\'' +

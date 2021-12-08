@@ -1,6 +1,7 @@
 package se.aten.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 /**
  * Class for if products are on discount or not
@@ -8,7 +9,7 @@ import java.sql.Timestamp;
  */
 @Entity
 @Table(name="tbl_Discount")
-public class Discount {
+public class Discount implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="discountId")
