@@ -1,6 +1,9 @@
 package se.aten.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,22 +16,26 @@ import java.util.List;
  */
 @Entity
 @Table(name="tbl_User")
-public class User {
+public class User implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(unique = true)
     private long userId;
     private String username;
     private String password;
     private String firstName;
     private String lastName;
+    @JsonIgnore
     private Timestamp createdAt = new Timestamp(System.currentTimeMillis());
     @OneToMany(
             mappedBy = "addressId",
             orphanRemoval = true,
             cascade = CascadeType.ALL)
     private List<UserAddress> userAddresses = new ArrayList<>();
-    @OneToMany
+    @OneToMany(
+            mappedBy = "receiptId",
+            orphanRemoval = true,
+            cascade = CascadeType.ALL)
     private List<Receipt>userReceipts = new ArrayList<>();
 
     public User() {
@@ -44,6 +51,10 @@ public class User {
 
     public void addAddress(UserAddress userAddress) {
         this.userAddresses.add(userAddress);
+    }
+
+    public void addReceipt(Receipt receipt) {
+        this.userReceipts.add(receipt);
     }
 
     public long getUserId() {
@@ -113,11 +124,14 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "username='" + username + '\'' +
+                "userId=" + userId +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", createdAt=" + createdAt +
                 ", userAddresses=" + userAddresses +
+                ", userReceipts=" + userReceipts +
                 '}';
     }
 }

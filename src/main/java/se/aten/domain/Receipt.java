@@ -1,7 +1,8 @@
 package se.aten.domain;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -10,25 +11,40 @@ import java.util.List;
  */
 
 @Entity
-public class Receipt {
+public class Receipt implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long receiptId;
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "customerNumber")
-    private User customerId;
+    @ManyToOne(cascade = CascadeType.PERSIST,
+            fetch = FetchType.EAGER)
+    @JoinColumn(name = "userId")
+    private User user;
     @OneToMany
     private List<Product> products;
-    private Date dateOfPurchase;
+    private Timestamp dateOfPurchase = new Timestamp(System.currentTimeMillis());
     private double total;
 
     public Receipt() {}
 
-    public Receipt(User customerId, List<Product> products, Date dateOfPurchase, double total) {
-        this.customerId = customerId;
+    public Receipt(List<Product> products, double total) {
         this.products = products;
-        this.dateOfPurchase = dateOfPurchase;
         this.total = total;
+    }
+
+    public long getReceiptId() {
+        return receiptId;
+    }
+
+    public void setReceiptId(long receiptId) {
+        this.receiptId = receiptId;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public List<Product> getProducts() {
@@ -39,11 +55,11 @@ public class Receipt {
         this.products = products;
     }
 
-    public Date getDateOfPurchase() {
+    public Timestamp getDateOfPurchase() {
         return dateOfPurchase;
     }
 
-    public void setDateOfPurchase(Date dateOfPurchase) {
+    public void setDateOfPurchase(Timestamp dateOfPurchase) {
         this.dateOfPurchase = dateOfPurchase;
     }
 
@@ -59,7 +75,7 @@ public class Receipt {
     public String toString() {
         return "Receipt{" +
                 "receiptId=" + receiptId +
-                ", customerNumber=" + customerId +
+                ", user=" + user +
                 ", products=" + products +
                 ", dateOfPurchase=" + dateOfPurchase +
                 ", total=" + total +

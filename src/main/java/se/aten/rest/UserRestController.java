@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import se.aten.domain.User;
 import se.aten.domain.UserAddress;
+import se.aten.repository.ReceiptRepository;
 import se.aten.repository.UserAddressRepository;
 import se.aten.repository.UserRepository;
 
@@ -25,6 +26,8 @@ public class UserRestController {
     private UserRepository userRepo;
     @Autowired
     private UserAddressRepository userAddressRepo;
+    @Autowired
+    private ReceiptRepository receiptRepo;
 
     /**
      * Finds all users
