@@ -18,6 +18,7 @@ import java.util.Optional;
  *
  * @author Emma Fredriksson
  */
+@CrossOrigin(origins = "http://localhost:8081")
 @RestController
 @RequestMapping("/api")
 public class UserRestController {
