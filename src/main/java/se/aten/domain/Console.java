@@ -23,7 +23,7 @@ public class Console extends Product implements Serializable {
         this.model = model;
     }
 
-    public Console(String name, String desc, double price, ConsoleType brand, String model, String productInfo) {
+    public Console(String name, String desc, double price, ConsoleType brand, String model) {
         super(name, desc, price);
         this.brand = brand;
         this.model = model;
