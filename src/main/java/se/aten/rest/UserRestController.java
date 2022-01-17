@@ -121,4 +121,26 @@ public class UserRestController {
             return new ResponseEntity(HttpStatus.CREATED);
         }
     }
+
+    @GetMapping("/loginRequest/{username}&{password}")
+    public ResponseEntity loginRequest(@PathVariable("username") String username, @PathVariable("password") String password) {
+        if (username == null || password == null) {
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        } else {
+            User user = userRepo.findByUsername(username);
+
+            if (user != null) {
+                if (user.getPassword().equals(password)) {
+                    User returnData = new User();
+                    returnData.setUsername(user.getUsername());
+
+                    return new ResponseEntity(returnData, HttpStatus.OK);
+                } else {
+                    return new ResponseEntity(HttpStatus.BAD_REQUEST);
+                }
+            } else {
+                return new ResponseEntity(HttpStatus.BAD_REQUEST);
+            }
+        }
+    }
 }
