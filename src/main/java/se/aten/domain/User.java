@@ -33,9 +33,9 @@ public class User implements Serializable {
             cascade = CascadeType.ALL)
     private List<UserAddress> userAddresses = new ArrayList<>();
     @OneToMany(
-            mappedBy = "receiptId",
+            //mappedBy = "receiptId",
             orphanRemoval = true,
-            cascade = CascadeType.ALL)
+            cascade = CascadeType.PERSIST)
     private List<Receipt>userReceipts = new ArrayList<>();
 
     public User() {
@@ -59,10 +59,6 @@ public class User implements Serializable {
 
     public long getUserId() {
         return userId;
-    }
-
-    public void setUserId(long userId) {
-        this.userId = userId;
     }
 
     public String getUsername() {
@@ -131,7 +127,6 @@ public class User implements Serializable {
                 ", lastName='" + lastName + '\'' +
                 ", createdAt=" + createdAt +
                 ", userAddresses=" + userAddresses +
-                ", userReceipts=" + userReceipts +
                 '}';
     }
 }

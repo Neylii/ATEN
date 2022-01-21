@@ -29,7 +29,7 @@ public class CheckoutServiceProductionImplTest {
     @Test
     public void createNewReceiptTest() {
         User user = new User("BosseTheMan", "Apelem", "Bosse", "Bus", new UserAddress("Hampgränd 1", "12345", "Melbourne", "Australia", "123456789"));
-        Receipt receipt = new Receipt(products, 100);
+        Receipt receipt = new Receipt(100);
         assertNotEquals(1, user.getUserReceipts().size(), "There should be 0 receipts since nothing has been added.");
 
         user.addReceipt(receipt);

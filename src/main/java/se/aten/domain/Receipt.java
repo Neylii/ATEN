@@ -3,6 +3,7 @@ package se.aten.domain;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,24 +20,20 @@ public class Receipt implements Serializable {
             fetch = FetchType.EAGER)
     @JoinColumn(name = "userId")
     private User user;
-    @OneToMany
-    private List<Product> products;
+    //@OneToMany(cascade = CascadeType.MERGE)
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<ReceiptProduct> products = new ArrayList<>();
     private Timestamp dateOfPurchase = new Timestamp(System.currentTimeMillis());
     private double total;
 
     public Receipt() {}
 
-    public Receipt(List<Product> products, double total) {
-        this.products = products;
+    public Receipt(double total) {
         this.total = total;
     }
 
     public long getReceiptId() {
         return receiptId;
-    }
-
-    public void setReceiptId(long receiptId) {
-        this.receiptId = receiptId;
     }
 
     public User getUser() {
@@ -47,11 +44,11 @@ public class Receipt implements Serializable {
         this.user = user;
     }
 
-    public List<Product> getProducts() {
+    public List<ReceiptProduct> getProducts() {
         return products;
     }
 
-    public void setProducts(List<Product> products) {
+    public void setProducts(List<ReceiptProduct> products) {
         this.products = products;
     }
 

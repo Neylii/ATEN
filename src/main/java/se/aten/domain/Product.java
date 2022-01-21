@@ -3,6 +3,7 @@ package se.aten.domain;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Objects;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -29,6 +30,18 @@ public class Product implements Serializable {
         // System.out.println(this.createdAt.getTime());        // För att få 16165771233114
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return productId == product.productId && Double.compare(product.price, price) == 0 && Objects.equals(name, product.name) && Objects.equals(description, product.description) && Objects.equals(discountId, product.discountId) && Objects.equals(createdAt, product.createdAt);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(productId, name, description, price, discountId, createdAt);
+    }
 
     public String getName() {
         return name;
