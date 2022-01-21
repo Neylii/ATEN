@@ -131,10 +131,7 @@ public class UserRestController {
 
             if (user != null) {
                 if (user.getPassword().equals(password)) {
-                    User returnData = new User();
-                    returnData.setUsername(user.getUsername());
-
-                    return new ResponseEntity(returnData, HttpStatus.OK);
+                    return new ResponseEntity(user, HttpStatus.OK);
                 } else {
                     return new ResponseEntity(HttpStatus.BAD_REQUEST);
                 }
