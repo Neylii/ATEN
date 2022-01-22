@@ -29,13 +29,9 @@ public class CheckoutServiceProductionImpl implements CheckoutService {
      */
     @Override
     public void checkout(long userId, List<Product> products) {
-        User user = userRepo.getOne(userId);
-        System.out.println(user);
+        User user = userRepo.getById(userId);
         double total = calculateTotalPrice(products);
         createNewReceipt(user, products, total);
-        System.out.println(user);
-        System.out.println(products);
-        System.out.println(total);
         userRepo.save(user);
     }
 
