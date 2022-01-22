@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CheckoutServiceProductionImplTest {
-    private CheckoutServiceProductionImpl checkout = new CheckoutServiceProductionImpl();
+    private final CheckoutServiceProductionImpl checkout = new CheckoutServiceProductionImpl();
     private static List<Product> products = new ArrayList<>();
 
     @BeforeAll
@@ -22,15 +22,15 @@ public class CheckoutServiceProductionImplTest {
     }
 
     @Test
-    public void calculateTotalPriceTest() {
+    void calculateTotalPriceTest() {
         assertEquals(1500, checkout.calculateTotalPrice(products), "Expected price does not match the actual price");
     }
 
     @Test
-    public void createNewReceiptTest() {
+    void createNewReceiptTest() {
         User user = new User("BosseTheMan", "Apelem", "Bosse", "Bus", new UserAddress("Hampgränd 1", "12345", "Melbourne", "Australia", "123456789"));
         Receipt receipt = new Receipt(100);
-        assertNotEquals(1, user.getUserReceipts().size(), "There should be 0 receipts since nothing has been added.");
+        assertNotEquals(1, user.getUserReceipts().size(), "There should be 0 receipts since nothing has been added to the user yet.");
 
         user.addReceipt(receipt);
         assertEquals(1, user.getUserReceipts().size(), "User should have 1 receipt.");
