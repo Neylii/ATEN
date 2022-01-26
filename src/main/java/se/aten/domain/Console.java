@@ -18,11 +18,24 @@ public class Console extends Product implements Serializable {
 
     public Console() {}
 
+    /**
+     * Constructor for creating a console
+     * @param brand the manufacturer of the console
+     * @param model which model the console is
+     */
     public Console(ConsoleType brand, String model) {
         this.brand = brand;
         this.model = model;
     }
 
+    /**
+     * Constructor for creating a console
+     * @param name the name of the console
+     * @param desc a fitting description of what the console is
+     * @param price the amount a user have to pay to be able to purchase the console
+     * @param brand the manufacturer of the console
+     * @param model which model the console is
+     */
     public Console(String name, String desc, double price, ConsoleType brand, String model) {
         super(name, desc, price);
         this.brand = brand;

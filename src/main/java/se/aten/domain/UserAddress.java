@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 /**
  * Entity class for user address.
- *
+ * This object is part of the whole User
  * @author Emma Fredriksson
  */
 @Entity
@@ -25,9 +25,16 @@ public class UserAddress implements Serializable {
     private String phoneNumber;
 
     public UserAddress() {
-
     }
 
+    /**
+     * Constructor for creating an address. This object is a part of the whole User-object.
+     * @param address the streetaddress
+     * @param zipcode a zipcode
+     * @param city a city
+     * @param country the country
+     * @param phoneNumber the users phonenumber
+     */
     public UserAddress(String address, String zipcode, String city, String country, String phoneNumber) {
         this.address = address;
         this.zipcode = zipcode;

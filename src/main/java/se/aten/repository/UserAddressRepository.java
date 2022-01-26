@@ -7,7 +7,5 @@ import java.util.List;
 
 @Repository
 public interface UserAddressRepository extends JpaRepository<UserAddress, Long> {
-
     List<UserAddress> findByCity(String city);
-
 }

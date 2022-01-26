@@ -10,7 +10,7 @@ import se.aten.service.CheckoutService;
 
 import java.util.List;
 
-@CrossOrigin(origins = "http://localhost:8081")
+@CrossOrigin(origins = { "http://localhost:8081", "https://atenstore.netlify.app/"})
 @RestController
 @RequestMapping("/api")
 public class CheckoutRestController {
@@ -18,6 +18,12 @@ public class CheckoutRestController {
     @Qualifier("checkoutService")
     private CheckoutService checkoutService;
 
+    /**
+     *
+     * @param productsInCart
+     * @param id
+     * @return
+     */
     @RequestMapping(value = "/checkout/{id}", method = RequestMethod.POST)
     public ResponseEntity checkout(@RequestBody List<Product> productsInCart, @PathVariable("id") long id) {
         if (productsInCart.isEmpty()) {

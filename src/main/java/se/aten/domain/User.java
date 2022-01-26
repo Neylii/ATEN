@@ -9,8 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This class represents a User that can login to the application.
- *
+ * This class represents a User that can log in to the application.
  * @author Niklas Johansson
  * @author Emma Fredriksson
  */
@@ -41,6 +40,14 @@ public class User implements Serializable {
     public User() {
     }
 
+    /**
+     * Constructor to create a new user
+     * @param username the username
+     * @param password the password
+     * @param firstName a first name
+     * @param lastName a last name
+     * @param userAddress the users address
+     */
     public User(String username, String password, String firstName, String lastName, UserAddress userAddress) {
         this.username = username;
         this.password = password;

@@ -9,14 +9,14 @@ import se.aten.repository.ConsoleRepository;
 import se.aten.repository.GameRepository;
 import se.aten.repository.ProductRepository;
 
-
 import java.util.List;
 import java.util.Optional;
 
 /**
  * Rest API for products
+ * @author Alexander Gabay, Tom Karlsson, Emma Fredriksson, Niklas Johansson
  */
-@CrossOrigin(origins = "http://localhost:8081")
+@CrossOrigin(origins = { "http://localhost:8081", "https://atenstore.netlify.app/"})
 @RestController
 @RequestMapping("/api")
 public class ProductRestController {
@@ -43,7 +43,7 @@ public class ProductRestController {
 
     /**
      * Finds all products given its name.
-     * @param name
+     * @param name the name of the product to search for
      * @return a list of products with the specified name
      */
     @GetMapping("/products/{name}")
@@ -71,7 +71,7 @@ public class ProductRestController {
 
     /**
      * Find a specific console given its ID.
-     * @param id
+     * @param id the id of the console to search for
      * @return the found console if any
      */
     @GetMapping("/console/{id}")
