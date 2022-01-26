@@ -28,6 +28,10 @@ public class Receipt implements Serializable {
 
     public Receipt() {}
 
+    /**
+     * Constructor for creating a receipt
+     * @param total the total amount a user have to pay to purchase the desired products
+     */
     public Receipt(double total) {
         this.total = total;
     }

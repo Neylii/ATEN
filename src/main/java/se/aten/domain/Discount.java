@@ -23,12 +23,18 @@ public class Discount implements Serializable {
     public Discount() {
     }
 
+    /**
+     * Constructor for creating a discount
+     * @param name a fitting name for the discount
+     * @param desc a fitting description
+     * @param discountPercent how much should be on discount
+     * @param active if the discount is active or not
+     */
     public Discount(String name, String desc, double discountPercent, boolean active) {
         this.name = name;
         this.description = desc;
         this.discountPercent = discountPercent;
         this.active = active;
         this.createdAt = new Timestamp(System.currentTimeMillis());
-        // System.out.println(this.createdAt.getTime());        // För att få 1616577123311
     }
 }

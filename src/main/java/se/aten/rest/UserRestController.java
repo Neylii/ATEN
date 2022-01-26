@@ -15,10 +15,10 @@ import java.util.Optional;
 
 /**
  * RestController for User and UserAddress.
- *
  * @author Emma Fredriksson
+ * @author Niklas Johansson
  */
-@CrossOrigin(origins = "http://localhost:8081")
+@CrossOrigin(origins = { "http://localhost:8081", "https://atenstore.netlify.app/"})
 @RestController
 @RequestMapping("/api")
 public class UserRestController {
@@ -45,10 +45,9 @@ public class UserRestController {
 
 
     /**
-     * Finds one user given it's unique user_id.
-     *
-     * @param id
-     * @return the user.
+     * Finds one user given its unique user_id.
+     * @param id the id of the user to search for
+     * @return the user if found
      */
     @GetMapping("/user/{id}")
     public ResponseEntity getUserById(@PathVariable("id") long id) {
@@ -63,8 +62,8 @@ public class UserRestController {
 
     /**
      * Find all with the same lastname.
-     *
-     * @param lastName
+     * @param lastName the lastname of the user to search for
+     * @return a list of users with the specified lastname if found
      */
     @GetMapping("/users/{lastName}")
     public ResponseEntity getUserByLastName(@PathVariable("lastName") String lastName) {
@@ -93,8 +92,8 @@ public class UserRestController {
 
     /**
      * Finds all addresses given a city
-     *
-     * @param city
+     * @param city a city to search for
+     * @return a list of addresses in the specified city
      */
     @GetMapping("/usersAddress/{city}")
     public ResponseEntity getAddressByCity(@PathVariable("city") String city) {
@@ -106,6 +105,12 @@ public class UserRestController {
         }
     }
 
+    /**
+     * Creates a user and saves it in the database.
+     * @param user the user
+     * @return status 400 if username or password is missing,
+     * else returns status 200 if everything went okay
+     */
     @RequestMapping(value = "/user/new", method = RequestMethod.POST)
     public ResponseEntity createUser(@RequestBody User user) {
         if (user.getUsername() == null || user.getPassword() == null) {
@@ -122,6 +127,15 @@ public class UserRestController {
         }
     }
 
+    /**
+     * Method for logging in, checks if the password matches the password of the user trying
+     * to log in.
+     * @param username the specified username
+     * @param password the password of said username
+     * @return status 400 if either username or password is missing,
+     * or if the password does not match said username,
+     * else return status 200 if everything went okay.
+     */
     @GetMapping("/loginRequest/{username}&{password}")
     public ResponseEntity loginRequest(@PathVariable("username") String username, @PathVariable("password") String password) {
         if (username == null || password == null) {

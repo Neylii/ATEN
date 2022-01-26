@@ -14,6 +14,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Service class for checkout
+ */
 @Service("checkoutService")
 public class CheckoutServiceProductionImpl implements CheckoutService {
     @Autowired

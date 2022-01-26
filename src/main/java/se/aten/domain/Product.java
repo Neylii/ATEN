@@ -5,6 +5,9 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Objects;
 
+/**
+ * Class representing a base product.
+ */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Product implements Serializable {
@@ -22,12 +25,17 @@ public class Product implements Serializable {
     public Product() {
     }
 
+    /**
+     * Constructor for creating a product.
+     * @param name a name for the product
+     * @param desc a fitting description of what the product is
+     * @param price the amount a user have to pay to be able to purchase the product
+     */
     public Product(String name, String desc, double price) {
         this.name = name;
         this.description = desc;
         this.price = price;
         this.createdAt = new Timestamp(System.currentTimeMillis());
-        // System.out.println(this.createdAt.getTime());        // För att få 16165771233114
     }
 
     @Override
